@@ -1,0 +1,231 @@
+.why-choose {
+    position: relative;
+    padding: 40px 0;
+    background: #f8fbff;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        left: -180px;
+        top: -120px;
+        border-radius: 50%;
+        background: radial-gradient(rgba(34, 197, 94, .08), transparent 70%);
+    }
+
+    .container {
+        max-width: 1320px;
+        margin: auto;
+        padding: 0 32px;
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 65px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .section-tag {
+        color: #22c55e;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+
+    h2 {
+        font-size: 46px;
+        color: #1f2937;
+        margin: 18px 0 24px;
+        line-height: 1.25;
+    }
+
+    p {
+        color: #64748b;
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .benefits {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .benefit {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        background: rgba(255, 255, 255, .6);
+        border-radius: 18px;
+        padding: 18px;
+        transition: .35s;
+
+        &:hover {
+            background: white;
+            transform: translateX(10px);
+            box-shadow: 0 15px 35px rgba(34, 197, 94, .10);
+        }
+
+        .icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #22c55e, #0ea5e9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-shrink: 0;
+            transition: .35s;
+
+            i {
+                font-size: 22px;
+            }
+        }
+
+        &:hover .icon {
+            transform: rotate(10deg) scale(1.08);
+        }
+
+        h4 {
+            font-size: 20px;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-size: 15px;
+            margin: 0;
+        }
+    }
+
+    .right-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .info-card {
+        position: relative;
+        background: white;
+        border-radius: 22px;
+        padding: 35px 25px;
+        text-align: center;
+        overflow: hidden;
+        border: 1px solid #edf2f7;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, .05);
+        transition: .4s;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #22c55e, #0ea5e9);
+            transition: .4s;
+        }
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 22px 45px rgba(34, 197, 94, .15);
+        }
+
+        &:hover::before {
+            width: 100%;
+        }
+
+        &:hover i {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        i {
+            font-size: 38px;
+            color: #22c55e;
+            margin-bottom: 18px;
+            transition: .35s;
+        }
+
+        h3 {
+            font-size: 32px;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        span {
+            color: #64748b;
+            font-size: 15px;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .why-choose {
+        padding: 70px 0;
+
+        .container {
+            grid-template-columns: 1fr;
+            gap: 45px;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+
+        .right-content {
+            margin-top: 10px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .why-choose {
+        padding: 60px 0;
+
+        .container {
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        .benefit {
+            padding: 16px;
+
+            .icon {
+                width: 50px;
+                height: 50px;
+
+                i {
+                    font-size: 18px;
+                }
+            }
+
+            h4 {
+                font-size: 18px;
+            }
+        }
+
+        .right-content {
+            grid-template-columns: 1fr;
+        }
+
+        .info-card {
+
+            padding: 28px 20px;
+
+            h3 {
+                font-size: 28px;
+            }
+        }
+    }
+}

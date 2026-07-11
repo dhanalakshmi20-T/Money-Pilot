@@ -1,0 +1,268 @@
+.dashboard-preview {
+    position: relative;
+    padding: 80px 0;
+    background: #fff;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        right: -180px;
+        top: -120px;
+        border-radius: 50%;
+        background: radial-gradient(rgba(34, 197, 94, .08), transparent 70%);
+    }
+
+    .container {
+        max-width: 1320px;
+        margin: auto;
+        padding: 0 32px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 70px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .section-tag {
+        color: #22c55e;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+
+    h2 {
+        font-size: 46px;
+        color: #1f2937;
+        margin: 18px 0;
+        line-height: 1.25;
+    }
+
+    p {
+        color: #64748b;
+        line-height: 1.8;
+        font-size: 17px;
+        margin-bottom: 32px;
+    }
+
+    .preview-list {
+        list-style: none;
+        margin-bottom: 35px;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: #334155;
+        }
+
+        i {
+            color: #22c55e;
+            font-size: 18px;
+        }
+    }
+
+    .preview-btn {
+        border: none;
+        padding: 16px 32px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #22c55e, #0ea5e9);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .35s;
+        box-shadow: 0 15px 35px rgba(34, 197, 94, .22);
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 22px 45px rgba(34, 197, 94, .28);
+        }
+    }
+
+    .preview-image {
+        position: relative;
+        animation: floatDashboard 6s ease-in-out infinite;
+
+        img {
+            width: 100%;
+            display: block;
+            border-radius: 22px;
+            box-shadow: 0 28px 65px rgba(0, 0, 0, .12);
+            transition: .4s;
+        }
+
+        &:hover img {
+            transform: scale(1.02);
+        }
+    }
+
+    .floating-card {
+        position: absolute;
+        background: white;
+        border-radius: 18px;
+        padding: 18px 22px;
+        min-width: 185px;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .08);
+        z-index: 5;
+        transition: .35s;
+        animation: floatCard 4s ease-in-out infinite;
+
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 45px rgba(34, 197, 94, .18);
+        }
+
+        h3 {
+            margin: 8px 0;
+            font-size: 24px;
+            color: #1f2937;
+        }
+
+        small {
+            color: #94a3b8;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #22c55e;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+    }
+
+    .income {
+        top: 30px;
+        left: -40px;
+    }
+
+    .expense {
+        top: 180px;
+        right: -35px;
+        animation-delay: 1.5s;
+    }
+
+    .saving {
+        bottom: 20px;
+        left: 35px;
+        animation-delay: .8s;
+    }
+}
+
+@media (max-width: 992px) {
+    .dashboard-preview {
+        padding: 70px 0;
+
+        .container {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 45px;
+        }
+
+        .preview-list {
+            display: inline-block;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+
+        .preview-image {
+            margin-top: 10px;
+        }
+
+        .income {
+            left: 5px;
+        }
+
+        .expense {
+            right: 5px;
+        }
+
+        .saving {
+            left: 25px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-preview {
+        padding: 60px 0;
+
+        .container {
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+
+        .preview-image {
+
+            .floating-card {
+                min-width: 115px;
+                padding: 10px 12px;
+                border-radius: 12px;
+
+                h3 {
+                    font-size: 15px;
+                }
+
+                small,
+                span {
+                    font-size: 10px;
+                }
+            }
+
+            .income {
+                top: 8px;
+                left: 5px;
+            }
+
+            .expense {
+                top: 90px;
+                right: 5px;
+            }
+
+            .saving {
+                bottom: 8px;
+                left: 12px;
+            }
+        }
+    }
+}
+
+@keyframes floatDashboard {
+    0% {
+        transform:translateY(0);
+    }
+
+    50% {
+        transform:translateY(-12px);
+    }
+
+    100% {
+        transform:translateY(0);
+    }
+}
+
+@keyframes floatCard {
+    0% {
+        transform:translateY(0);
+    }
+
+    50% {
+        transform:translateY(-8px);
+    }
+
+    100% {
+        transform:translateY(0);
+    }
+}

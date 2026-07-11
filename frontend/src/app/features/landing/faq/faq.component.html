@@ -1,0 +1,22 @@
+<section class="faq">
+    <div class="container">
+        <div class="section-title">
+            <span>FAQ</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to the most common questions about Money Pilot.</p>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item" *ngFor="let faq of faqs; let i = index" [class.active]="activeFaq === i">
+                <div class="faq-question" (click)="toggleFaq(i)">
+                    <h3>{{ faq.question }}</h3>
+                    <i class="fas" [ngClass]="activeFaq === i ? 'fa-minus' : 'fa-plus'"></i>
+                </div>
+
+                <div class="faq-answer">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

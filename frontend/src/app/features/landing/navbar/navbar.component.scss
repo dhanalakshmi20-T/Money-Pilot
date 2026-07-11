@@ -1,0 +1,217 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    transition: .35s;
+
+    &.scrolled {
+        background: rgba(255, 255, 255, .98);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+    }
+
+    .container {
+        max-width: 1320px;
+        margin: auto;
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .desktop-logo {
+            width: 140px;
+        }
+
+        .mobile-logo {
+            width: 48px;
+            display: none;
+        }
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 38px;
+
+        a {
+            position: relative;
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+            transition: .3s;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -8px;
+                width: 0;
+                height: 2px;
+                background: #22c55e;
+                transition: .3s;
+            }
+
+            &:hover {
+                color: #22c55e;
+            }
+
+            &:hover::after {
+                width: 100%;
+            }
+        }
+    }
+
+    .nav-actions {
+        display: flex;
+        gap: 15px;
+    }
+
+    .login-btn,
+    .signup-btn {
+        padding: 12px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: .3s;
+    }
+
+    .login-btn {
+        border: 1px solid #22c55e;
+        background: transparent;
+        color: #22c55e;
+
+        &:hover {
+            background: #22c55e;
+            color: white;
+        }
+    }
+
+    .signup-btn {
+        border: none;
+        color: white;
+        background: linear-gradient(135deg, #22c55e, #0ea5e9);
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, .25);
+        }
+    }
+
+    .mobile-actions {
+        display: none;
+    }
+
+    .menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        i {
+            font-size: 32px;
+            transition: .3s;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+
+        .container {
+            padding: 18px 20px;
+        }
+
+        .menu-btn {
+            display: block;
+        }
+
+        .nav-actions {
+            display: none;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+            padding: 30px 20px;
+            border-radius: 0 0 22px 22px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, .08);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-25px);
+            transition: .35s;
+        }
+
+        .nav-links.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-actions {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+
+        .container {
+            padding: 15px 18px;
+        }
+
+        .logo {
+
+            .desktop-logo {
+                display: none;
+            }
+
+            .mobile-logo {
+                display: block;
+                width: 70px;
+            }
+        }
+
+        .menu-btn i {
+            font-size: 20px;
+        }
+
+        .nav-links {
+            padding: 30px 20px;
+        }
+    }
+}

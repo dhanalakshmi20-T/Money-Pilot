@@ -1,0 +1,30 @@
+<header class="navbar" [class.scrolled]="isScrolled">
+    <div class="container">
+        <div class="logo">
+            <img class="desktop-logo" src="assets/logo.png" alt="Money Pilot">
+            <img class="mobile-logo" src="assets/logo-icon.png" alt="Money Pilot">
+        </div>
+
+        <nav class="nav-links" [class.active]="isMenuOpen">
+            <a href="#" (click)="closeMenu()">Home</a>
+            <a href="#features" (click)="closeMenu()">Features</a>
+            <a href="#about" (click)="closeMenu()">About</a>
+            <a href="#faq" (click)="closeMenu()">FAQ</a>
+            <a href="#contact" (click)="closeMenu()">Contact</a>
+
+            <div class="mobile-actions">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Create Account</button>
+            </div>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Create Account</button>
+        </div>
+
+        <button class="menu-btn" (click)="toggleMenu()">
+            <i class="fas" [ngClass]="isMenuOpen ? 'fa-times' : 'fa-bars'"></i>
+        </button>
+    </div>
+</header>
