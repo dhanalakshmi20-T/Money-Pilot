@@ -2,26 +2,23 @@
     <div class="login-left">
         <div class="overlay"></div>
 
-        <div class="brand">
-            <img src="assets/logo.png" alt="Monry Pilot" class="logo">
-            
+        <div class="bran">
+            <img src="assets/logo.png" alt="Money Pilot" class="logo">
             <span class="tag">
                 <i class="fas fa-wallet"></i>
                 Smart Personal Finance
             </span>
-
             <h1>
                 Welcome Back to
                 <span>Money Pilot</span>
             </h1>
-            
             <p>Track your income, expenses, savings, budgets and financial goals from one beautiful dashboard.</p>
         </div>
 
         <div class="illustration">
             <img src="assets/auth/login-illustration.png" alt="Login Illustration">
         </div>
-
+        
         <div class="features">
             <div class="feature">
                 <i class="fas fa-chart-line"></i>
@@ -54,7 +51,7 @@
                         <i class="fas fa-envelope"></i>
                         <input type="email" formControlName="email" placeholder="Enter your email">
                     </div>
-                    
+
                     <small class="error" *ngIf="f.email.touched && f.email.invalid">Please enter a valid email.</small>
                 </div>
 
@@ -64,7 +61,6 @@
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
                         <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Enter your password">
-                        
                         <button type="button" class="password-toggle" (click)="togglePassword()">
                             <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
                         </button>
@@ -78,23 +74,12 @@
                         <input type="checkbox">
                         Remember Me
                     </label>
-
                     <a routerLink="/forgot-password">Forgot Password?</a>
                 </div>
 
-                <div class="role-selection">
-                    <button type="button" class="role-btn" [class.active]="selectedRole=='user'" (click)="selectRole('user')">
-                        <i class="fas fa-user"></i>
-                        User
-                    </button>
+                <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 
-                    <button type="button" class="role-btn" [class.active]="selectedRole=='admin'" (click)="selectRole('admin')">
-                        <i class="fas fa-user-shield"></i>
-                        Admin
-                    </button>
-                </div>
-
-                <button type="submit" class="login-btn" [disabled]="loading">
+                <button class="login-btn" type="submit" [disabled]="loading">
                     <ng-container *ngIf="!loading">
                         Login
                         <i class="fas fa-arrow-right"></i>

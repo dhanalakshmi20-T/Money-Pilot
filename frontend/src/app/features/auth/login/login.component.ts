@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "src/app/core/services/auth/auth.service";
+import { LoginRequest } from "src/app/core/services/models/auth/login-request";
+import { LoginResponse } from "src/app/core/services/models/auth/login-response";
 
 @Component({
   selector: 'app-login',
@@ -10,14 +13,15 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-  showPassword = false;
   loading = false;
-  selectedRole: 'user' | 'admin' = 'user';
+  showPassword = false;
+  errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -34,35 +38,38 @@ export class LoginComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  selectRole(role: 'user' | 'admin'): void {
-    this.selectedRole = role;
-  }
-
   login(): void {
+    this.errorMessage = '';
+    
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
 
     this.loading = true;
-    
-    const loginData = {
+
+    const request: LoginRequest = {
       email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
-      role: this.selectedRole
+      password: this.loginForm.value.password
     };
 
-    console.log('Login Request : ', loginData);
+    this.authService.login(request).subscribe({
+      next: (response: LoginResponse) => {
+        this.loading = false;
+        this.authService.saveSession(response);
 
-    setTimeout(() => {
-      this.loading = false;
+        if (response.user.role === 'ADMIN') {
+          this.router.navigate(['/admin']);
+        }
+        else {
+          this.router.navigate(['/dashboard']);
+        }
+      },
 
-      if (this.selectedRole === 'admin') {
-        this.router.navigate(['/admin']);
+      error: (error) => {
+        this.loading = false;
+        this.errorMessage = error.error?.message || 'Invalid email or password';
       }
-      else {
-        this.router.navigate(['/dashboard']);
-      }
-    }, 1500);
+    });
   }
 }
