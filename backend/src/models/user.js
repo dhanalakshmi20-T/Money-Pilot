@@ -56,15 +56,19 @@ userSchema.pre('save', async function (next) {
         return next();
     }
 
-    const salt = await bcrypt.genSalt(10);
+    try {
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+        next();
+    }
 
-    this.password = await bcrypt.hash(this.password, salt);
-
-    next();
+    catch (error) {
+        next(error);
+    }
 });
 
-userSchema.methods.comparePassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
+userSchema.methods.comparePassword = async function (enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);
