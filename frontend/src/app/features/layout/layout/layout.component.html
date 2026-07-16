@@ -1,8 +1,10 @@
 <div class="layout">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [isOpen]="sidebarOpen" (closeSidebar)="closeSidebar()"></app-sidebar>
+
+    <div class="overlay" *ngIf="sidebarOpen" (click)="closeSidebar()"></div>
 
     <div class="main-content">
-        <app-navbar></app-navbar>
+        <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
 
         <div class="page-content">
             <router-outlet></router-outlet>

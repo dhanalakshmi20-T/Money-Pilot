@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
@@ -8,6 +8,10 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
+  @Input() isOpen = false;
+
+  @Output() closeSidebar = new EventEmitter<void>();
 
   user: any;
 
