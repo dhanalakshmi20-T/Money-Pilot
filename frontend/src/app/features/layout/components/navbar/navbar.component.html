@@ -26,7 +26,7 @@
 
         <div class="profile-container">
             <div class="profile" (click)="toggleDropdown()">
-                <img [src]="user?.profileImage || 'assets/default-user.png'" alt="Profile">
+                <img [src]="user && user.profileImage ? serverUrl + user.profileImage : 'assets/default-user.png'" alt="Profile">
 
                 <div class="profile-info">
                     <h4>{{ user?.firstName }} {{ user?.lastName }}</h4>
@@ -38,7 +38,7 @@
 
             <div class="profile-dropdown" *ngIf="isDropdownOpen">
                 <div class="dropdown-header">
-                    <img [src]="user?.profileImage || 'assets/default-user.png'" alt="Profile">
+                    <img [src]="user && user.profileImage ? serverUrl + user.profileImage : 'assets/default-user.png'" alt="Profile">
 
                     <div>
                         <h4>{{ user?.firstName }} {{ user?.lastName }}</h4>

@@ -1,19 +1,25 @@
-import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthUser } from 'src/app/core/models/auth/auth-user';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   @Output() toggleSidebar = new EventEmitter<void>();
 
   user: AuthUser | null = null;
   isDropdownOpen = false;
+
+  serverUrl = environment.serverUrl;
+
+  private userSubscription!: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -22,11 +28,15 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadUser();
+    this.userSubscription = this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
   }
 
-  loadUser(): void {
-    this.user = this.authService.getUser();
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   openSidebar(): void {

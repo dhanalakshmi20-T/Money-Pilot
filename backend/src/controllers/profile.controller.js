@@ -66,3 +66,40 @@ exports.updateProfile = async (req, res) => {
         });
     }
 };
+
+exports.uploadProfileImage = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({
+                success: false,
+                message: "No image selected."
+            });
+        }
+
+        const imagePath = `/uploads/profile/${req.file.filename}`;
+        const user = await User.findByIdAndUpdate(
+            req.user.id,
+            {
+                profileImage: imagePath
+            },
+
+            {
+                new: true
+            }
+        ).select("-password");
+        res.status(200).json({
+            success: true,
+            message: "Profile image updated.",
+            data: user
+        });
+    }
+
+    catch (error) {
+        console.error(error);
+        
+        res.status(500).json({
+            success: false,
+            message: "Image upload failed"
+        });
+    }
+};

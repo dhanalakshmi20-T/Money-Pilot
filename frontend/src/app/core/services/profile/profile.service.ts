@@ -20,4 +20,12 @@ export class ProfileService {
   updateProfile(profile: Partial<Profile>): Observable<any> {
     return this.http.put<any>(this.apiUrl, profile);
   }
+
+  uploadProfileImage(file: File): Observable<any> {
+    const formData = new FormData();
+    
+    formData.append('image', file);
+
+    return this.http.post<any>(`${this.apiUrl}/upload-image`, formData);
+  }
 }
